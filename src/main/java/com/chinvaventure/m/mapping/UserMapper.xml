@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinvaventure.m.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.chinvaventure.m.model.User" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="User_Id" property="userId" jdbcType="INTEGER" />
+    <result column="User_Name" property="userName" jdbcType="VARCHAR" />
+    <result column="User_Password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="User_Gender" property="userGender" jdbcType="VARCHAR" />
+    <result column="User_Address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="User_Phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="Login_Log_Id" property="loginLogId" jdbcType="INTEGER" />
+    <result column="Create_Time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Del_Flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    Id, User_Id, User_Name, User_Password, User_Gender, User_Address, User_Phone, Login_Log_Id, 
+    Create_Time, Del_Flag
+  </sql>
+  <!--根据名称查询 -->
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.util.List">
+   select User_Name,User_Password from user 
+   where User_Name ='${userName}' AND User_Password='${userPassWord}';
+  </select>
+  <!-- 根据Eamil查询 -->
+  <select id="selectByEamil" resultMap="BaseResultMap" parameterType="java.util.List">
+  select 
+  <include refid="Base_Column_List" />
+  from user 
+  where User_Name ='${userEamil}';
+  </select>
+  <!--插入数据  -->
+  <insert id="insertUser" parameterType="com.chinvaventure.m.model.User">
+	insert into m1.user
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+	  <if test="records.userName != null" >
+       User_Name,
+      </if>
+      <if test="records.userPassword != null" >
+       User_Password,
+      </if>
+      <if test="records.userGender != null" >
+       User_Gender,
+      </if>
+      <if test="records.userAddress != null" >
+       User_Address,
+      </if>
+      <if test="records.userPhone != null" >
+       User_Phone,
+      </if>
+      <if test="records.loginLogId != null" >
+       Login_Log_Id,
+      </if>
+       Create_Time,
+
+      <if test="records.delFlag != null" >
+       Del_Flag,
+      </if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+	  <if test="records.userName != null" >
+      	 #{records.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="records.userPassword != null" >
+      	 #{records.userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="records.userGender != null" >
+      	 #{records.userGender,jdbcType=VARCHAR},
+      </if>
+      <if test="records.userAddress != null" >
+      	 #{records.userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="records.userPhone != null" >
+      	 #{records.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="records.loginLogId != null" >
+      	 #{records.loginLogId,jdbcType=INTEGER},
+      </if>
+       NOW(),
+      <if test="records.delFlag != null" >
+      	 #{records.delFlag,jdbcType=INTEGER}
+      </if>
+    </trim>
+</insert>
+<!-- 根据Eamil用户信息 -->
+<update id="updateUser" parameterType="map">
+   update m1.user
+   <set>
+   	<if test="records.userPassword!=null">
+   		 User_Password = #{records.userPassword,jdbcType=VARCHAR},
+   	</if>
+   	<if test="records.userAddress!=null">
+   		 User_Address = #{records.userAddress,jdbcType=VARCHAR},
+   	</if>
+   	<if test="records.userPhone!=null">
+   		 User_Phone = #{records.userPhone,jdbcType=VARCHAR},
+   	</if>
+   </set>
+    where User_Gender = #{records.userGender,jdbcType=VARCHAR}
+</update>
+</mapper>

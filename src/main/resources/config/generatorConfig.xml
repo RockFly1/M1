@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry location="D:\Works\Maven\localRepository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />
+	
+	<context id="cn.adsend.wechat" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.PaginationPlugin"/>
+		
+        <commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.248:3307/cv_data_transfer" userId="root" password="12345"/>
+		
+		<javaTypeResolver >
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<!-- targetProject:自动生成代码的位置 -->
+		<javaModelGenerator targetPackage="com.chinaventure.m.model" targetProject="D:\Works\WorkSpaces\M1\src\main\java\com\chinvaventure\m\model">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.chinaventure.m.mapping"  targetProject="D:\Works\WorkSpaces\M1\src\main\java\com\chinvaventure\m\mapping">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.chinaventure.m.mapper"  targetProject="D:\Works\WorkSpaces\M1\src\main\java\com\chinvaventure\m\mapper">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!--  
+		读配置
+		enableCountByExample="false" enableSelectByExample="false" 
+		写配置
+		enableUpdateByExample="false" enableDeleteByExample="false" enableCountByExample="false" selectByExampleQueryId="false" enableSelectByPrimaryKey="false" selectByPrimaryKeyQueryId="false" enableSelectByExample="false" 
+		-->
+		<table tableName="app_cv_organization" domainObjectName="AppCvOrganization" schema="minghan"  
+		></table>
+	</context>
+	
+</generatorConfiguration>
