@@ -26,6 +26,8 @@ public class User {
 
     private Integer x1;
 
+    private  Integer x2;
+
     public Integer getId() {
         return id;
     }
