@@ -28,6 +28,16 @@ public class User {
 
     private  Integer x2;
 
+    private  Integer x3;
+
+    public Integer getX2() {
+        return x2;
+    }
+
+    public void setX2(Integer x2) {
+        this.x2 = x2;
+    }
+
     public Integer getId() {
         return id;
     }
