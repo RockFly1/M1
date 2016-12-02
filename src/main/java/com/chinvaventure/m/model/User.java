@@ -3,6 +3,7 @@ package com.chinvaventure.m.model;
 import java.util.Date;
 
 public class User {
+
     private Integer id;
 
     private Integer userId;
@@ -22,6 +23,8 @@ public class User {
     private Date createTime;
 
     private Integer delFlag;
+
+    private Integer x1;
 
     public Integer getId() {
         return id;
@@ -101,5 +104,13 @@ public class User {
 
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    public Integer getX1() {
+        return x1;
+    }
+
+    public void setX1(Integer x1) {
+        this.x1 = x1;
     }
 }
